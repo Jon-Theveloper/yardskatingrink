@@ -6,138 +6,191 @@
     <title>Yard Skating Rink</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <script>
-        // Simple page switching script
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            document.getElementById('mobile-menu').classList.add('hidden');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neonPink: '#ff6ec7',
+                        neonBlue: '#00f7ff',
+                        neonGreen: '#39ff14',
+                        neonPurple: '#bc13fe',
+                        neonYellow: '#fff01f',
+                        darkBg: '#0f0f1a',
+                    },
+                    fontFamily: {
+                        'sans': ['"Exo 2"', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s linear infinite',
+                        'neon-glow': 'neonGlow 2s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        neonGlow: {
+                            '0%, 100%': { 'text-shadow': '0 0 5px #fff, 0 0 10px #fff, 0 0 15px currentColor, 0 0 20px currentColor' },
+                            '50%': { 'text-shadow': '0 0 5px #fff, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor, 0 0 25px currentColor' },
+                        }
+                    }
+                }
+            }
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuBtn = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            menuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-        });
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700;900&display=swap');
+        
         body {
             font-family: 'Exo 2', sans-serif;
             background-color: #0f0f1a;
             color: white;
             min-height: 100vh;
         }
+
+        #features{
+            margin-top: 700px; 
+        }
         .neon-border {
             border: 2px solid;
             box-shadow: 0 0 10px currentColor, inset 0 0 10px currentColor;
         }
-        .skew-bg { transform: skewY(-3deg); transform-origin: top left; }
-        .skew-content { transform: skewY(3deg); }
-        .page { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .page.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .skate-wheel { animation: spin 3s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .logo-center { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 20; }
-        .logo-bg { position: relative; height: 16rem; }
-        #features { margin-top: 0; }
+        
+        .skew-bg {
+            transform: skewY(-3deg);
+            transform-origin: top left;
+        }
+        
+        .skew-content {
+            transform: skewY(3deg);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .skate-wheel {
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
     </style>
 </head>
-<body class="bg-[#0f0f1a]">
+<body class="bg-darkBg">
     <!-- Navigation -->
-    <nav class="bg-black bg-opacity-80 backdrop-blur-md fixed w-full z-50 border-b border-[#bc13fe] shadow-lg shadow-[#bc13fe]/20">
+    <nav class="bg-black bg-opacity-80 backdrop-blur-md fixed w-full z-50 border-b border-neonPurple shadow-lg shadow-neonPurple/20">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" onclick="showPage('home')" class="flex items-center space-x-2" aria-label="Home">
-                <div class="text-3xl text-[#bc13fe] animate-pulse">
+            <a href="#" onclick="showPage('home')" class="flex items-center space-x-2">
+                <div class="text-3xl text-neonPurple animate-neon-glow">
                     <i class="fas fa-skating"></i>
                 </div>
-                <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff6ec7] to-[#00f7ff]">
+                <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neonPink to-neonBlue">
                     Yard Skating Rink
                 </span>
             </a>
+            
             <div class="hidden md:flex space-x-8">
-                <a href="#" onclick="showPage('home')" class="text-white hover:text-[#00f7ff] transition-colors font-bold" aria-label="Home">Home</a>
-                <a href="#" onclick="showPage('about')" class="text-white hover:text-[#39ff14] transition-colors font-bold" aria-label="About">About</a>
-                <a href="#" onclick="showPage('pricing')" class="text-white hover:text-[#fff01f] transition-colors font-bold" aria-label="Pricing">Pricing</a>
-                <a href="#" onclick="showPage('events')" class="text-white hover:text-[#bc13fe] transition-colors font-bold" aria-label="Events">Events</a>
-                <a href="#" onclick="showPage('contact')" class="text-white hover:text-[#ff6ec7] transition-colors font-bold" aria-label="Contact">Contact</a>
+                <a href="#" onclick="showPage('home')" class="text-white hover:text-neonBlue transition-colors font-bold">Home</a>
+                <a href="#" onclick="showPage('about')" class="text-white hover:text-neonGreen transition-colors font-bold">About</a>
+                <a href="#" onclick="showPage('pricing')" class="text-white hover:text-neonYellow transition-colors font-bold">Pricing</a>
+                <a href="#" onclick="showPage('events')" class="text-white hover:text-neonPurple transition-colors font-bold">Events</a>
+                <a href="#" onclick="showPage('contact')" class="text-white hover:text-neonPink transition-colors font-bold">Contact</a>
             </div>
-            <button class="md:hidden text-white" id="mobile-menu-button" aria-label="Open Mobile Menu">
+            
+            <button class="md:hidden text-white" id="mobile-menu-button">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
+        
         <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-black bg-opacity-90 w-full py-4" id="mobile-menu">
             <div class="container mx-auto px-4 flex flex-col space-y-4">
-                <a href="#" onclick="showPage('home')" class="text-white hover:text-[#00f7ff] transition-colors font-bold py-2 border-b border-gray-800" aria-label="Home">Home</a>
-                <a href="#" onclick="showPage('about')" class="text-white hover:text-[#39ff14] transition-colors font-bold py-2 border-b border-gray-800" aria-label="About">About</a>
-                <a href="#" onclick="showPage('pricing')" class="text-white hover:text-[#fff01f] transition-colors font-bold py-2 border-b border-gray-800" aria-label="Pricing">Pricing</a>
-                <a href="#" onclick="showPage('events')" class="text-white hover:text-[#bc13fe] transition-colors font-bold py-2 border-b border-gray-800" aria-label="Events">Events</a>
-                <a href="#" onclick="showPage('contact')" class="text-white hover:text-[#ff6ec7] transition-colors font-bold py-2" aria-label="Contact">Contact</a>
+                <a href="#" onclick="showPage('home')" class="text-white hover:text-neonBlue transition-colors font-bold py-2 border-b border-gray-800">Home</a>
+                <a href="#" onclick="showPage('about')" class="text-white hover:text-neonGreen transition-colors font-bold py-2 border-b border-gray-800">About</a>
+                <a href="#" onclick="showPage('pricing')" class="text-white hover:text-neonYellow transition-colors font-bold py-2 border-b border-gray-800">Pricing</a>
+                <a href="#" onclick="showPage('events')" class="text-white hover:text-neonPurple transition-colors font-bold py-2 border-b border-gray-800">Events</a>
+                <a href="#" onclick="showPage('contact')" class="text-white hover:text-neonPink transition-colors font-bold py-2">Contact</a>
             </div>
         </div>
     </nav>
+
     <!-- Home Page -->
     <div id="home" class="page active pt-20">
+        <!-- Hero Section -->
         <section class="relative overflow-hidden">
-            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-[#bc13fe]/10 to-[#0f0f1a] z-0"></div>
+            <div class="absolute bottom-30 bg-gradient-to-b from-neonPurple/10 to-darkBg z-0"></div>
             <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#ff6ec7] via-[#00f7ff] to-[#39ff14]">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-neonPink via-neonBlue to-neonGreen">
                         SKATE UNDER THE LIGHTS
                     </h1>
                     <p class="text-xl md:text-2xl mb-10 text-gray-300">
                         Experience the ultimate neon skating adventure at our state-of-the-art rink
                     </p>
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <button onclick="showPage('pricing')" class="px-8 py-4 bg-[#ff6ec7] hover:bg-[#bc13fe] text-black font-bold rounded-full transition-all transform hover:scale-105 shadow-lg" aria-label="Book Now">
+                        <button onclick="showPage ('pricing')" class="px-8 py-4 bg-neonPink hover:bg-neonPurple text-black font-bold rounded-full transition-all transform hover:scale-105 shadow-lg shadow-neonPink/50">
                             BOOK NOW
                         </button>
-                        <button onclick="showPage('events')" class="px-8 py-4 border-2 border-[#00f7ff] text-[#00f7ff] hover:bg-[#00f7ff]/10 font-bold rounded-full transition-all transform hover:scale-105 shadow-lg" aria-label="Upcoming Events">
+                        <button onclick="showPage('events')" class="px-8 py-4 border-2 border-neonBlue text-neonBlue hover:bg-neonBlue/10 font-bold rounded-full transition-all transform hover:scale-105">
                             UPCOMING EVENTS
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="logo-bg">
-                <div class="logo-center skate-wheel mb-0 text-[#bc13fe] text-8xl">
-                    <img src="log0.png" alt="Yard Skating Logo" style="width: 8rem; height: 8rem; object-fit: contain;" />
+            
+            <div class="relative h-64 md:h-96 bg-gradient-to-t from-darkBg to-transparent">
+                <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-darkBg to-transparent"></div>
+                <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                    <div class="skate-wheel mb-70 text-neonPurple text-8xl">
+                        <img src="log0.png" alt="Yard Skating Logo"></img>
+                    </div>
                 </div>
             </div>
         </section>
-        <section id="features" class="py-20 mt-8 bg-gradient-to-b from-[#0f0f1a] to-black">
+
+        <!-- Features Section -->
+        <section class="py-20 mt-30 bg-gradient-to-b from-darkBg to-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#39ff14]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonGreen">
                     WHY SKATE WITH US
                 </h2>
+                
                 <div class="grid md:grid-cols-3 gap-10">
-                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-[#00f7ff]/30 hover:border-[#00f7ff] transition-all group">
-                        <div class="text-[#ff6ec7] text-5xl mb-6 group-hover:animate-pulse">
+                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-neonBlue/30 hover:border-neonBlue transition-all group">
+                        <div class="text-neonPink text-5xl mb-6 group-hover:animate-pulse">
                             <i class="fas fa-music"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-[#fff01f]">Live DJ Nights</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-neonYellow">Live DJ Nights</h3>
                         <p class="text-gray-300">
                             Every Thursday to Sunday night, our resident DJ spins the hottest tracks while you skate under neon lights.
                         </p>
                     </div>
-                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-[#ff6ec7]/30 hover:border-[#ff6ec7] transition-all group">
-                        <div class="text-[#00f7ff] text-5xl mb-6 group-hover:animate-pulse">
+                    
+                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-neonPink/30 hover:border-neonPink transition-all group">
+                        <div class="text-neonBlue text-5xl mb-6 group-hover:animate-pulse">
                             <i class="fas fa-tshirt"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-[#bc13fe]">Skate Rentals</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-neonPurple">Skate Rentals</h3>
                         <p class="text-gray-300">
                             High-quality skates available in all sizes. We maintain our equipment daily for your safety and comfort.
                         </p>
                     </div>
-                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-[#39ff14]/30 hover:border-[#39ff14] transition-all group">
-                        <div class="text-[#fff01f] text-5xl mb-6 group-hover:animate-pulse">
+                    
+                    <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-neonGreen/30 hover:border-neonGreen transition-all group">
+                        <div class="text-neonYellow text-5xl mb-6 group-hover:animate-pulse">
                             <i class="fas fa-birthday-cake"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-4 text-[#00f7ff]">Party Packages</h3>
+                        <h3 class="text-2xl font-bold mb-4 text-neonBlue">Party Packages</h3>
                         <p class="text-gray-300">
                             Celebrate birthdays, corporate events, or any occasion with our customizable party packages.
                         </p>
@@ -145,42 +198,46 @@
                 </div>
             </div>
         </section>
+
+        <!-- Testimonials -->
         <section class="py-20 bg-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#bc13fe]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonPurple">
                     WHAT SKATERS SAY
                 </h2>
+                
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-[#0f0f1a] p-8 rounded-xl border-l-4 border-[#ff6ec7] relative">
-                        <div class="absolute -top-4 -left-4 text-[#ff6ec7] text-4xl">
+                    <div class="bg-darkBg p-8 rounded-xl border-l-4 border-neonPink relative">
+                        <div class="absolute -top-4 -left-4 text-neonPink text-4xl">
                             <i class="fas fa-quote-left"></i>
                         </div>
                         <p class="mb-6 text-gray-300 italic">
-                           It was my first time attending, and I enjoyed it. You have to constantly go to be great at skating or some just have it natural. I’d attend again and it’s beautiful at night!
+                           It was my first time attending, and I enjoyed it. You have to constantly go to be great at skating or some just have it natural. I’d attend again and it’s beautiful at nights.
                         </p>
                         <div class="flex items-center">
-                            <div class="w-12 h-12 rounded-full bg-[#ff6ec7]/20 flex items-center justify-center mr-4">
-                                <i class="fas fa-user text-[#ff6ec7]"></i>
+                            <div class="w-12 h-12 rounded-full bg-neonPink/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-neonPink"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-[#fff01f]">Sashoy S.</h4>
+                                <h4 class="font-bold text-neonYellow">Sashoy S.</h4>
                                 <p class="text-sm text-gray-400">First Timer</p>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-[#0f0f1a] p-8 rounded-xl border-l-4 border-[#00f7ff] relative">
-                        <div class="absolute -top-4 -left-4 text-[#00f7ff] text-4xl">
+                    
+                    <div class="bg-darkBg p-8 rounded-xl border-l-4 border-neonBlue relative">
+                        <div class="absolute -top-4 -left-4 text-neonBlue text-4xl">
                             <i class="fas fa-quote-left"></i>
                         </div>
                         <p class="mb-6 text-gray-300 italic">
-                            Come skate with us at yard skating rink—my son's favorite place to be on the weekends!
+                            Come skate with us at yard skating rink   my son's favorite place to be on the weekends!
                         </p>
                         <div class="flex items-center">
-                            <div class="w-12 h-12 rounded-full bg-[#00f7ff]/20 flex items-center justify-center mr-4">
-                                <i class="fas fa-user text-[#00f7ff]"></i>
+                            <div class="w-12 h-12 rounded-full bg-neonBlue/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-neonBlue"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-[#39ff14]">Stephen B.</h4>
+                                <h4 class="font-bold text-neonGreen">Stephen B.</h4>
                                 <p class="text-sm text-gray-400">Parent</p>
                             </div>
                         </div>
@@ -189,13 +246,14 @@
             </div>
         </section>
     </div>
+
     <!-- About Page -->
     <div id="about" class="page pt-20">
         <section class="py-20">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center gap-12">
                     <div class="md:w-1/2">
-                        <h2 class="text-4xl font-bold mb-6 text-[#ff6ec7]">
+                        <h2 class="text-4xl font-bold mb-6 text-neonPink">
                             OUR STORY
                         </h2>
                         <p class="text-gray-300 mb-6">
@@ -205,121 +263,131 @@
                             What started as a small local rink has grown into one of the most popular skating destinations in the region, known for our vibrant atmosphere and commitment to the skating community.
                         </p>
                         <div class="flex items-center space-x-4 mb-8">
-                            <div class="text-[#39ff14] text-3xl">
+                            <div class="text-neonGreen text-3xl">
                                 <i class="fas fa-award"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-[#fff01f]">Best Entertainment Venue 2022</h4>
+                                <h4 class="font-bold text-neonYellow">Best Entertainment Venue 2022</h4>
                                 <p class="text-sm text-gray-400">City Times Readers' Choice</p>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="md:w-1/2 relative">
-                        <div class="bg-[#bc13fe]/10 rounded-xl p-1 neon-border border-[#bc13fe]">
+                        <div class="bg-neonPurple/10 rounded-xl p-1 neon-border border-neonPurple">
                             <img src="about-img0.jpg" alt="Skating rink interior" class="rounded-lg w-full h-auto">
                         </div>
-                        <div class="absolute -bottom-6 -right-6 bg-[#ff6ec7] text-black font-bold px-6 py-3 rounded-full transform rotate-6 shadow-lg">
+                        <div class="absolute -bottom-6 -right-6 bg-neonPink text-black font-bold px-6 py-3 rounded-full transform rotate-6 shadow-lg">
                             SINCE 2015
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="py-20 bg-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#00f7ff]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonBlue">
                     OUR FACILITY
                 </h2>
+                
                 <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl border border-[#39ff14]/20 hover:border-[#39ff14] transition-all">
-                        <div class="text-[#fff01f] text-4xl mb-4">
+                    <div class="bg-darkBg p-6 rounded-xl border border-neonGreen/20 hover:border-neonGreen transition-all">
+                        <div class="text-neonYellow text-4xl mb-4">
                             <i class="fas fa-ruler-combined"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-[#bc13fe]">Rink Size</h3>
+                        <h3 class="text-2xl font-bold mb-3 text-neonPurple">Rink Size</h3>
                         <p class="text-gray-300">
                             12,000 sq ft smooth concrete skating surface with professional-grade coating
                         </p>
                     </div>
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl border border-[#00f7ff]/20 hover:border-[#00f7ff] transition-all">
-                        <div class="text-[#ff6ec7] text-4xl mb-4">
+                    
+                    <div class="bg-darkBg p-6 rounded-xl border border-neonBlue/20 hover:border-neonBlue transition-all">
+                        <div class="text-neonPink text-4xl mb-4">
                             <i class="fas fa-skating"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-[#39ff14]">Skate Inventory</h3>
+                        <h3 class="text-2xl font-bold mb-3 text-neonGreen">Skate Inventory</h3>
                         <p class="text-gray-300">
                             300+ pairs of quad and inline skates available in all sizes
                         </p>
                     </div>
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl border border-[#ff6ec7]/20 hover:border-[#ff6ec7] transition-all">
-                        <div class="text-[#00f7ff] text-4xl mb-4">
+                    
+                    <div class="bg-darkBg p-6 rounded-xl border border-neonPink/20 hover:border-neonPink transition-all">
+                        <div class="text-neonBlue text-4xl mb-4">
                             <i class="fas fa-utensils"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-[#fff01f]">Snack Bar</h3>
+                        <h3 class="text-2xl font-bold mb-3 text-neonYellow">Snack Bar</h3>
                         <p class="text-gray-300">
                             Fully stocked with classic rink snacks, healthy options, and specialty drinks
                         </p>
                     </div>
                 </div>
-                <div class="bg-gradient-to-r from-[#bc13fe]/10 to-[#00f7ff]/10 p-8 rounded-xl border border-[#bc13fe]/30">
-                    <h3 class="text-2xl font-bold mb-6 text-[#39ff14] text-center">HOURS OF OPERATION</h3>
-                    <div class="grid md:grid-cols-4 gap-4 text-center">
+                
+                <div class="bg-gradient-to-r from-neonPurple/10 to-neonBlue/10 p-8 rounded-xl border border-neonPurple/30">
+                    <h3 class="text-2xl font-bold mb-6 text-neonGreen text-center">HOURS OF OPERATION</h3>
+                    <div class="grid md:grid-cols-7 gap-4 text-center">
                         <div class="bg-black bg-opacity-50 p-3 rounded-lg">
-                            <div class="font-bold text-[#ff6ec7]">THU</div>
+                            <div class="font-bold text-neonPink">THU</div>
                             <div class="text-sm text-gray-300">5PM - 12AM</div>
                         </div>
                         <div class="bg-black bg-opacity-50 p-3 rounded-lg">
-                            <div class="font-bold text-[#00f7ff]">FRI</div>
+                            <div class="font-bold text-neonBlue">FRI</div>
                             <div class="text-sm text-gray-300">5PM - 12AM</div>
                         </div>
                         <div class="bg-black bg-opacity-50 p-3 rounded-lg">
-                            <div class="font-bold text-[#39ff14]">SAT</div>
+                            <div class="font-bold text-neonGreen">SAT</div>
                             <div class="text-sm text-gray-300">5PM - 12AM</div>
                         </div>
                         <div class="bg-black bg-opacity-50 p-3 rounded-lg">
-                            <div class="font-bold text-[#fff01f]">SUN</div>
+                            <div class="font-bold text-neonYellow">SUN</div>
                             <div class="text-sm text-gray-300">5PM - 12AM</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#fff01f]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonYellow">
                     MEET THE TEAM
                 </h2>
+                
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl text-center border border-[#39ff14]/20 hover:border-[#39ff14] transition-all">
-                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#ff6ec7] to-[#bc13fe] p-1">
-                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-[#fff01f]">
+                    <div class="bg-darkBg p-6 rounded-xl text-center border border-neonGreen/20 hover:border-neonGreen transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-neonPink to-neonPurple p-1">
+                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-neonYellow">
                                 <i class="fas fa-user"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2 text-[#00f7ff]">Alex Morgan</h3>
-                        <p class="text-[#ff6ec7] mb-4">Founder & Manager</p>
+                        <h3 class="text-2xl font-bold mb-2 text-neonBlue">Alex Morgan</h3>
+                        <p class="text-neonPink mb-4">Founder & Manager</p>
                         <p class="text-gray-300 text-sm">
                             Professional skater with 15+ years experience. Organizes our weekly skate competitions.
                         </p>
                     </div>
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl text-center border border-[#00f7ff]/20 hover:border-[#00f7ff] transition-all">
-                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#00f7ff] to-[#39ff14] p-1">
-                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-[#ff6ec7]">
+                    
+                    <div class="bg-darkBg p-6 rounded-xl text-center border border-neonBlue/20 hover:border-neonBlue transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-neonBlue to-neonGreen p-1">
+                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-neonPink">
                                 <i class="fas fa-user"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2 text-[#bc13fe]">Taylor Chen</h3>
-                        <p class="text-[#39ff14] mb-4">Head DJ</p>
+                        <h3 class="text-2xl font-bold mb-2 text-neonPurple">Taylor Chen</h3>
+                        <p class="text-neonGreen mb-4">Head DJ</p>
                         <p class="text-gray-300 text-sm">
                             Creates the perfect skating playlists and hosts our themed music nights.
                         </p>
                     </div>
-                    <div class="bg-[#0f0f1a] p-6 rounded-xl text-center border border-[#ff6ec7]/20 hover:border-[#ff6ec7] transition-all">
-                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-[#bc13fe] to-[#ff6ec7] p-1">
-                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-[#00f7ff]">
+                    
+                    <div class="bg-darkBg p-6 rounded-xl text-center border border-neonPink/20 hover:border-neonPink transition-all">
+                        <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-neonPurple to-neonPink p-1">
+                            <div class="w-full h-full rounded-full bg-black bg-opacity-90 flex items-center justify-center text-4xl text-neonBlue">
                                 <i class="fas fa-user"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2 text-[#fff01f]">Jamie Rivera</h3>
-                        <p class="text-[#00f7ff] mb-4">Skate Technician</p>
+                        <h3 class="text-2xl font-bold mb-2 text-neonYellow">Jamie Rivera</h3>
+                        <p class="text-neonBlue mb-4">Skate Technician</p>
                         <p class="text-gray-300 text-sm">
                             Keeps all our rental skates in perfect condition and offers maintenance workshops.
                         </p>
@@ -328,19 +396,21 @@
             </div>
         </section>
     </div>
+
     <!-- Pricing Page -->
     <div id="pricing" class="page pt-20">
         <section class="py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-6 text-[#39ff14]">
+                <h2 class="text-4xl font-bold text-center mb-6 text-neonGreen">
                     SKATING SESSIONS
                 </h2>
                 <p class="text-xl text-center mb-16 text-gray-300 max-w-2xl mx-auto">
                     Choose the perfect session for your skating needs.
                 </p>
+                
                 <div class="grid md:grid-cols-3 gap-8 mb-20">
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#00f7ff]/30 hover:border-[#00f7ff] transition-all transform hover:scale-[1.02]">
-                        <div class="bg-[#00f7ff] text-black p-6 text-center">
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonBlue/30 hover:border-neonBlue transition-all transform hover:scale-[1.02]">
+                        <div class="bg-neonBlue text-black p-6 text-center">
                             <h3 class="text-2xl font-bold">ENTRY</h3>
                             <div class="text-4xl font-bold mt-2">$1.87</div>
                             <p class="text-sm opacity-80">Open to Close</p>
@@ -348,34 +418,35 @@
                         <div class="p-6">
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>General admission</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Standard skate rental</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Access to snack bar and dining area</span>
                                 </li>
                             </ul>
-                            <button class="w-full py-3 bg-[#00f7ff] hover:bg-[#00f7ff]/90 text-black font-bold rounded-lg transition-all">
+                            <button class="w-full py-3 bg-neonBlue hover:bg-neonBlue/90 text-black font-bold rounded-lg transition-all">
                                 BOOK NOW
                             </button>
                         </div>
                     </div>
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border-2 border-[#ff6ec7] hover:border-[#ff6ec7] transition-all transform hover:scale-[1.02] relative">
-                        <div class="absolute -top-1 -right-3 bg-[#fff01f] text-black font-bold px-4 py-1 rounded-full text-sm transform rotate-12">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border-2 border-neonPink hover:border-neonPink transition-all transform hover:scale-[1.02] relative">
+                        <div class="absolute -top-1 -right-3 bg-neonYellow text-black font-bold px-4 py-1 rounded-full text-sm transform rotate-12">
                             POPULAR
                         </div>
-                        <div class="bg-[#ff6ec7] text-black p-6 text-center">
+                        <div class="bg-neonPink text-black p-6 text-center">
                             <h3 class="text-2xl font-bold">SKATE RENTAL</h3>
                             <div class="text-4xl font-bold mt-2">$6.25</div>
                             <p class="text-sm opacity-80">2-hour session</p>
@@ -383,37 +454,38 @@
                         <div class="p-6">
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>General Admission</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Live DJ performance</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Access to snack bar and dining area</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Access to skating rink</span>
                                 </li>
                             </ul>
-                            <button class="w-full py-3 bg-[#ff6ec7] hover:bg-[#ff6ec7]/90 text-black font-bold rounded-lg transition-all">
+                            <button class="w-full py-3 bg-neonPink hover:bg-neonPink/90 text-black font-bold rounded-lg transition-all">
                                 BOOK NOW
                             </button>
                         </div>
                     </div>
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#bc13fe]/30 hover:border-[#bc13fe] transition-all transform hover:scale-[1.02]">
-                        <div class="bg-[#bc13fe] text-black p-6 text-center">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonPurple/30 hover:border-neonPurple transition-all transform hover:scale-[1.02]">
+                        <div class="bg-neonPurple text-black p-6 text-center">
                             <h3 class="text-2xl font-bold">PERSONAL SKATES</h3>
                             <div class="text-4xl font-bold mt-2">$4.37</div>
                             <p class="text-sm opacity-80">Open to close</p>
@@ -421,99 +493,102 @@
                         <div class="p-6">
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Unlimited skating all day</span>
                                 </li>
                                 <li class="flex items-center">
-                                    <div class="text-[#39ff14] mr-3">
+                                    <div class="text-neonGreen mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <span>Premium skate upgrade</span>
                                 </li>
                             </ul>
-                            <button class="w-full py-3 bg-[#bc13fe] hover:bg-[#bc13fe]/90 text-black font-bold rounded-lg transition-all">
+                            <button class="w-full py-3 bg-neonPurple hover:bg-neonPurple/90 text-black font-bold rounded-lg transition-all">
                                 BOOK NOW
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-r from-[#39ff14]/10 to-[#00f7ff]/10 p-8 rounded-xl border border-[#39ff14]/30">
-                    <h3 class="text-2xl font-bold mb-6 text-[#fff01f] text-center">MEMBERSHIP OPTIONS</h3>
+                
+                <div class="bg-gradient-to-r from-neonGreen/10 to-neonBlue/10 p-8 rounded-xl border border-neonGreen/30">
+                    <h3 class="text-2xl font-bold mb-6 text-neonYellow text-center">MEMBERSHIP OPTIONS</h3>
                     <div class="grid md:grid-cols-3 gap-8">
                         <div class="bg-black bg-opacity-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-3 text-[#ff6ec7]">MONTHLY PASS</h4>
-                            <div class="text-3xl font-bold mb-4 text-[#00f7ff]">$45<span class="text-lg">/month</span></div>
+                            <h4 class="font-bold text-xl mb-3 text-neonPink">MONTHLY PASS</h4>
+                            <div class="text-3xl font-bold mb-4 text-neonBlue">$45<span class="text-lg">/month</span></div>
                             <ul class="space-y-2 text-gray-300">
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Unlimited general admission</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Standard skate rental included</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>15% off snack bar</span>
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-black bg-opacity-50 p-6 rounded-lg border-2 border-[#fff01f]">
-                            <h4 class="font-bold text-xl mb-3 text-[#39ff14]">ANNUAL PASS</h4>
-                            <div class="text-3xl font-bold mb-4 text-[#fff01f]">$400<span class="text-lg">/year</span></div>
+                        
+                        <div class="bg-black bg-opacity-50 p-6 rounded-lg border-2 border-neonYellow">
+                            <h4 class="font-bold text-xl mb-3 text-neonGreen">ANNUAL PASS</h4>
+                            <div class="text-3xl font-bold mb-4 text-neonYellow">$400<span class="text-lg">/year</span></div>
                             <ul class="space-y-2 text-gray-300">
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>All monthly benefits</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Free locker rental</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>2 guest passes per month</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Priority event booking</span>
                                 </li>
                             </ul>
                         </div>
+                        
                         <div class="bg-black bg-opacity-50 p-6 rounded-lg">
-                            <h4 class="font-bold text-xl mb-3 text-[#bc13fe]">FAMILY PLAN</h4>
-                            <div class="text-3xl font-bold mb-4 text-[#ff6ec7]">$90<span class="text-lg">/month</span></div>
+                            <h4 class="font-bold text-xl mb-3 text-neonPurple">FAMILY PLAN</h4>
+                            <div class="text-3xl font-bold mb-4 text-neonPink">$90<span class="text-lg">/month</span></div>
                             <ul class="space-y-2 text-gray-300">
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Up to 2 adults & 3 kids</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>All monthly benefits</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] mr-2 mt-1">
+                                    <div class="text-neonGreen mr-2 mt-1">
                                         <i class="fas fa-check"></i>
                                     </div>
                                     <span>Free birthday party for kids</span>
@@ -524,75 +599,78 @@
                 </div>
             </div>
         </section>
+
         <section class="py-20 bg-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#00f7ff]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonBlue">
                     GROUP DISCOUNTS
                 </h2>
+                
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#39ff14]/30">
-                        <div class="grid md:grid-cols-2 divide-x divide-[#39ff14]/20">
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonGreen/30">
+                        <div class="grid md:grid-cols-2 divide-x divide-neonGreen/20">
                             <div class="p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-[#ff6ec7]">SCHOOL GROUPS</h3>
+                                <h3 class="text-2xl font-bold mb-4 text-neonPink">SCHOOL GROUPS</h3>
                                 <p class="text-gray-300 mb-6">
                                     Special pricing for school field trips and youth groups of 10 or more.
                                 </p>
                                 <ul class="space-y-3 mb-6">
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>$8 per student (weekdays)</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>1 free chaperone per 10 students</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>Educational skate safety session</span>
                                     </li>
                                 </ul>
-                                <button class="px-6 py-3 bg-[#39ff14] hover:bg-[#39ff14]/90 text-black font-bold rounded-lg transition-all">
+                                <button class="px-6 py-3 bg-neonGreen hover:bg-neonGreen/90 text-black font-bold rounded-lg transition-all">
                                     INQUIRE NOW
                                 </button>
                             </div>
+                            
                             <div class="p-8">
-                                <h3 class="text-2xl font-bold mb-4 text-[#00f7ff]">CORPORATE EVENTS</h3>
+                                <h3 class="text-2xl font-bold mb-4 text-neonBlue">CORPORATE EVENTS</h3>
                                 <p class="text-gray-300 mb-6">
                                     Team building activities or company parties for groups of 15+.
                                 </p>
                                 <ul class="space-y-3 mb-6">
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>20% off regular pricing</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>Private rink rental options</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>Custom catering packages</span>
                                     </li>
                                     <li class="flex items-start">
-                                        <div class="text-[#fff01f] mr-2 mt-1">
+                                        <div class="text-neonYellow mr-2 mt-1">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <span>Branding opportunities</span>
                                     </li>
                                 </ul>
-                                <button class="px-6 py-3 bg-[#00f7ff] hover:bg-[#00f7ff]/90 text-black font-bold rounded-lg transition-all">
+                                <button class="px-6 py-3 bg-neonBlue hover:bg-neonBlue/90 text-black font-bold rounded-lg transition-all">
                                     INQUIRE NOW
                                 </button>
                             </div>
@@ -602,217 +680,225 @@
             </div>
         </section>
     </div>
+
     <!-- Events Page -->
     <div id="events" class="page pt-20">
         <section class="py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-6 text-[#bc13fe]">
+                <h2 class="text-4xl font-bold text-center mb-6 text-neonPurple">
                     UPCOMING EVENTS
                 </h2>
                 <p class="text-xl text-center mb-16 text-gray-300 max-w-2xl mx-auto">
                     Check out our exciting themed skating nights and special events
                 </p>
+                
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    <!-- Neon Glow Party -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#ff6ec7]/30 hover:border-[#ff6ec7] transition-all group">
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonPink/30 hover:border-neonPink transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#ff6ec7]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonPink/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#fff01f] mb-1">FRIDAY • JUNE 16 • 8PM</div>
+                                <div class="text-xs font-bold text-neonYellow mb-1">FRIDAY • JUNE 16 • 8PM</div>
                                 <h3 class="text-2xl font-bold text-white">NEON GLOW PARTY</h3>
                             </div>
-                            <div class="absolute top-4 right-4 bg-[#ff6ec7] text-black font-bold px-3 py-1 rounded-full text-xs transform rotate-6">
+                            <div class="absolute top-4 right-4 bg-neonPink text-black font-bold px-3 py-1 rounded-full text-xs transform rotate-6">
                                 POPULAR
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#ff6ec7] to-[#bc13fe] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonPink to-neonPurple opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Our most popular event! Skate under black lights with glow sticks, neon face paint, and vibrant costumes.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$15 ADVANCE • $20 DOOR</div>
-                                <button class="px-4 py-2 bg-[#ff6ec7] hover:bg-[#ff6ec7]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$15 ADVANCE • $20 DOOR</div>
+                                <button class="px-4 py-2 bg-neonPink hover:bg-neonPink/90 text-black font-bold rounded-full text-sm transition-all">
                                     GET TICKETS
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- 80's Retro Night -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#00f7ff]/30 hover:border-[#00f7ff] transition-all group">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonBlue/30 hover:border-neonBlue transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#00f7ff]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonBlue/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#fff01f] mb-1">SATURDAY • JUNE 24 • 7PM</div>
+                                <div class="text-xs font-bold text-neonYellow mb-1">SATURDAY • JUNE 24 • 7PM</div>
                                 <h3 class="text-2xl font-bold text-white">80'S RETRO NIGHT</h3>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#00f7ff] to-[#39ff14] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonBlue to-neonGreen opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Big hair, leg warmers, and all the classic hits! Best 80s costume wins a prize.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$12 ADVANCE • $15 DOOR</div>
-                                <button class="px-4 py-2 bg-[#00f7ff] hover:bg-[#00f7ff]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$12 ADVANCE • $15 DOOR</div>
+                                <button class="px-4 py-2 bg-neonBlue hover:bg-neonBlue/90 text-black font-bold rounded-full text-sm transition-all">
                                     GET TICKETS
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Family Skate Day -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#39ff14]/30 hover:border-[#39ff14] transition-all group">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonGreen/30 hover:border-neonGreen transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#39ff14]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonGreen/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#fff01f] mb-1">SUNDAY • JULY 2 • 2PM</div>
+                                <div class="text-xs font-bold text-neonYellow mb-1">SUNDAY • JULY 2 • 2PM</div>
                                 <h3 class="text-2xl font-bold text-white">FAMILY SKATE DAY</h3>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#39ff14] to-[#fff01f] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonGreen to-neonYellow opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Special afternoon session with games, prizes, and activities for skaters of all ages.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$8 KIDS • $10 ADULTS</div>
-                                <button class="px-4 py-2 bg-[#39ff14] hover:bg-[#39ff14]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$8 KIDS • $10 ADULTS</div>
+                                <button class="px-4 py-2 bg-neonGreen hover:bg-neonGreen/90 text-black font-bold rounded-full text-sm transition-all">
                                     GET TICKETS
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Skate Competition -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#fff01f]/30 hover:border-[#fff01f] transition-all group">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonYellow/30 hover:border-neonYellow transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#fff01f]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonYellow/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#ff6ec7] mb-1">WEDNESDAY • JULY 5 • 7PM</div>
+                                <div class="text-xs font-bold text-neonPink mb-1">WEDNESDAY • JULY 5 • 7PM</div>
                                 <h3 class="text-2xl font-bold text-white">SKATE COMPETITION</h3>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#fff01f] to-[#ff6ec7] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonYellow to-neonPink opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Show off your skills! Categories for beginners to advanced skaters with cash prizes.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$10 ENTRY • $5 SPECTATOR</div>
-                                <button class="px-4 py-2 bg-[#fff01f] hover:bg-[#fff01f]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$10 ENTRY • $5 SPECTATOR</div>
+                                <button class="px-4 py-2 bg-neonYellow hover:bg-neonYellow/90 text-black font-bold rounded-full text-sm transition-all">
                                     REGISTER NOW
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Disco Inferno -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#bc13fe]/30 hover:border-[#bc13fe] transition-all group">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonPurple/30 hover:border-neonPurple transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#bc13fe]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonPurple/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#00f7ff] mb-1">FRIDAY • JULY 14 • 9PM</div>
+                                <div class="text-xs font-bold text-neonBlue mb-1">FRIDAY • JULY 14 • 9PM</div>
                                 <h3 class="text-2xl font-bold text-white">DISCO INFERNO</h3>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#bc13fe] to-[#00f7ff] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonPurple to-neonBlue opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Saturday Night Fever comes alive! Disco balls, mirror tiles, and all the classic disco hits.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$15 ADVANCE • $20 DOOR</div>
-                                <button class="px-4 py-2 bg-[#bc13fe] hover:bg-[#bc13fe]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$15 ADVANCE • $20 DOOR</div>
+                                <button class="px-4 py-2 bg-neonPurple hover:bg-neonPurple/90 text-black font-bold rounded-full text-sm transition-all">
                                     GET TICKETS
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <!-- Learn to Skate -->
-                    <div class="bg-[#0f0f1a] rounded-xl overflow-hidden border border-[#ff6ec7]/30 hover:border-[#ff6ec7] transition-all group">
+                    
+                    <div class="bg-darkBg rounded-xl overflow-hidden border border-neonPink/30 hover:border-neonPink transition-all group">
                         <div class="relative overflow-hidden h-48">
-                            <div class="absolute inset-0 bg-gradient-to-b from-[#ff6ec7]/30 to-black/80 z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-neonPink/30 to-black/80 z-10"></div>
                             <div class="absolute bottom-0 left-0 p-6 z-20">
-                                <div class="text-xs font-bold text-[#39ff14] mb-1">EVERY TUESDAY • 7PM</div>
+                                <div class="text-xs font-bold text-neonGreen mb-1">EVERY TUESDAY • 7PM</div>
                                 <h3 class="text-2xl font-bold text-white">LEARN TO SKATE</h3>
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-r from-[#ff6ec7] to-[#bc13fe] opacity-30 group-hover:opacity-50 transition-all"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-neonPink to-neonPurple opacity-30 group-hover:opacity-50 transition-all"></div>
                         </div>
                         <div class="p-6">
                             <p class="text-gray-300 mb-4">
                                 Beginner lessons with our certified instructors. All ages welcome! Skate rental included.
                             </p>
                             <div class="flex justify-between items-center">
-                                <div class="text-[#39ff14] font-bold">$10 PER LESSON</div>
-                                <button class="px-4 py-2 bg-[#ff6ec7] hover:bg-[#ff6ec7]/90 text-black font-bold rounded-full text-sm transition-all">
+                                <div class="text-neonGreen font-bold">$10 PER LESSON</div>
+                                <button class="px-4 py-2 bg-neonPink hover:bg-neonPink/90 text-black font-bold rounded-full text-sm transition-all">
                                     SIGN UP
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                
                 <div class="text-center">
-                    <button class="px-8 py-4 border-2 border-[#39ff14] text-[#39ff14] hover:bg-[#39ff14]/10 font-bold rounded-full transition-all transform hover:scale-105">
+                    <button class="px-8 py-4 border-2 border-neonGreen text-neonGreen hover:bg-neonGreen/10 font-bold rounded-full transition-all transform hover:scale-105">
                         VIEW FULL CALENDAR
                     </button>
                 </div>
             </div>
         </section>
+
         <section class="py-20 bg-black">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-16 text-[#00f7ff]">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonBlue">
                     PRIVATE EVENTS
                 </h2>
+                
                 <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto">
                     <div class="md:w-1/2">
-                        <div class="bg-gradient-to-br from-[#bc13fe]/10 to-[#00f7ff]/10 p-8 rounded-xl border border-[#bc13fe]/30">
-                            <h3 class="text-2xl font-bold mb-6 text-[#fff01f]">BOOK YOUR PRIVATE EVENT</h3>
+                        <div class="bg-gradient-to-br from-neonPurple/10 to-neonBlue/10 p-8 rounded-xl border border-neonPurple/30">
+                            <h3 class="text-2xl font-bold mb-6 text-neonYellow">BOOK YOUR PRIVATE EVENT</h3>
                             <p class="text-gray-300 mb-6">
                                 Yard Skating is the perfect venue for birthdays, corporate events, team building, school outings, and more!
                             </p>
                             <ul class="space-y-4 mb-8">
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] text-xl mr-3">
+                                    <div class="text-neonGreen text-xl mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#ff6ec7]">Exclusive Rink Access</h4>
+                                        <h4 class="font-bold text-neonPink">Exclusive Rink Access</h4>
                                         <p class="text-gray-300 text-sm">Private rental options available</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] text-xl mr-3">
+                                    <div class="text-neonGreen text-xl mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#00f7ff]">Custom Packages</h4>
+                                        <h4 class="font-bold text-neonBlue">Custom Packages</h4>
                                         <p class="text-gray-300 text-sm">Tailored to your group size and needs</p>
                                     </div>
                                 </li>
                                 <li class="flex items-start">
-                                    <div class="text-[#39ff14] text-xl mr-3">
+                                    <div class="text-neonGreen text-xl mr-3">
                                         <i class="fas fa-check-circle"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#39ff14]">Catering Options</h4>
+                                        <h4 class="font-bold text-neonGreen">Catering Options</h4>
                                         <p class="text-gray-300 text-sm">From snack bars to full catering</p>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    
                     <div class="md:w-1/2">
-                        <form class="bg-[#0f0f1a] p-8 rounded-xl border border-[#39ff14]/30" novalidate>
-                            <h3 class="text-2xl font-bold mb-6 text-[#bc13fe] text-center">INQUIRE NOW</h3>
+                        <form class="bg-darkBg p-8 rounded-xl border border-neonGreen/30">
+                            <h3 class="text-2xl font-bold mb-6 text-neonPurple text-center">INQUIRE NOW</h3>
+                            
                             <div class="mb-4">
                                 <label class="block text-gray-300 mb-2">Name</label>
-                                <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00f7ff]">
+                                <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonBlue">
                             </div>
+                            
                             <div class="mb-4">
                                 <label class="block text-gray-300 mb-2">Email</label>
-                                <input type="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00f7ff]">
+                                <input type="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonBlue">
                             </div>
+                            
                             <div class="mb-4">
                                 <label class="block text-gray-300 mb-2">Event Type</label>
-                                <select class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00f7ff]">
+                                <select class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonBlue">
                                     <option>Birthday Party</option>
                                     <option>Corporate Event</option>
                                     <option>School Group</option>
@@ -820,11 +906,13 @@
                                     <option>Other</option>
                                 </select>
                             </div>
+                            
                             <div class="mb-6">
                                 <label class="block text-gray-300 mb-2">Estimated Guests</label>
-                                <input type="number" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#00f7ff]">
+                                <input type="number" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonBlue">
                             </div>
-                            <button class="w-full py-3 bg-[#bc13fe] hover:bg-[#bc13fe]/90 text-black font-bold rounded-lg transition-all">
+                            
+                            <button class="w-full py-3 bg-neonPurple hover:bg-neonPurple/90 text-black font-bold rounded-lg transition-all">
                                 SEND INQUIRY
                             </button>
                         </form>
@@ -833,37 +921,42 @@
             </div>
         </section>
     </div>
+
     <!-- Contact Page -->
     <div id="contact" class="page pt-20">
         <section class="py-20">
             <div class="container mx-auto px-4">
-                <h2 class="text-4xl font-bold text-center mb-6 text-[#fff01f]">
+                <h2 class="text-4xl font-bold text-center mb-6 text-neonYellow">
                     GET IN TOUCH
                 </h2>
                 <p class="text-xl text-center mb-16 text-gray-300 max-w-2xl mx-auto">
                     We'd love to hear from you! Reach out with any questions or feedback.
                 </p>
+                
                 <div class="flex flex-col md:flex-row gap-12 max-w-5xl mx-auto">
                     <div class="md:w-1/2">
-                        <form class="bg-[#0f0f1a] p-8 rounded-xl border border-[#ff6ec7]/30" novalidate>
-                            <h3 class="text-2xl font-bold mb-6 text-[#00f7ff] text-center">CONTACT FORM</h3>
+                        <form class="bg-darkBg p-8 rounded-xl border border-neonPink/30">
+                            <h3 class="text-2xl font-bold mb-6 text-neonBlue text-center">CONTACT FORM</h3>
+                            
                             <div class="grid md:grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <label class="block text-gray-300 mb-2">First Name</label>
-                                    <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#ff6ec7]">
+                                    <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonPink">
                                 </div>
                                 <div>
                                     <label class="block text-gray-300 mb-2">Last Name</label>
-                                    <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#ff6ec7]">
+                                    <input type="text" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonPink">
                                 </div>
                             </div>
+                            
                             <div class="mb-4">
                                 <label class="block text-gray-300 mb-2">Email</label>
-                                <input type="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#ff6ec7]">
+                                <input type="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonPink">
                             </div>
+                            
                             <div class="mb-4">
                                 <label class="block text-gray-300 mb-2">Subject</label>
-                                <select class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#ff6ec7]">
+                                <select class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonPink">
                                     <option>General Inquiry</option>
                                     <option>Group Booking</option>
                                     <option>Event Information</option>
@@ -871,57 +964,76 @@
                                     <option>Other</option>
                                 </select>
                             </div>
+                            
                             <div class="mb-6">
                                 <label class="block text-gray-300 mb-2">Message</label>
-                                <textarea rows="5" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[#ff6ec7]"></textarea>
+                                <textarea rows="5" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-neonPink"></textarea>
                             </div>
-                            <button class="w-full py-3 bg-[#ff6ec7] hover:bg-[#ff6ec7]/90 text-black font-bold rounded-lg transition-all">
+                            
+                            <button class="w-full py-3 bg-neonPink hover:bg-neonPink/90 text-black font-bold rounded-lg transition-all">
                                 SEND MESSAGE
                             </button>
                         </form>
                     </div>
+                    
                     <div class="md:w-1/2">
-                        <div class="bg-[#0f0f1a] p-8 rounded-xl border border-[#00f7ff]/30 h-full">
-                            <h3 class="text-2xl font-bold mb-6 text-[#39ff14] text-center">CONTACT INFO</h3>
+                        <div class="bg-darkBg p-8 rounded-xl border border-neonBlue/30 h-full">
+                            <h3 class="text-2xl font-bold mb-6 text-neonGreen text-center">CONTACT INFO</h3>
+                            
                             <div class="space-y-6">
                                 <div class="flex items-start">
-                                    <div class="text-[#bc13fe] text-2xl mr-4 mt-1">
+                                    <div class="text-neonPurple text-2xl mr-4 mt-1">
                                         <i class="fas fa-map-marker-alt"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#fff01f] mb-1">ADDRESS</h4>
+                                        <h4 class="font-bold text-neonYellow mb-1">ADDRESS</h4>
                                         <p class="text-gray-300">1137 Sugar Mill Rd</p>
                                         <p class="text-gray-300">Montego Bay</p>
                                     </div>
                                 </div>
+                                
                                 <div class="flex items-start">
-                                    <div class="text-[#39ff14] text-2xl mr-4 mt-1">
+                                    <div class="text-neonGreen text-2xl mr-4 mt-1">
                                         <i class="fas fa-phone-alt"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#ff6ec7] mb-1">PHONE</h4>
-                                        <p class="text-gray-300">+1 (876) 555-1234</p>
+                                        <h4 class="font-bold text-neonPink mb-1">PHONE</h4>
+                                        <a href="tel:+18765798892" class="text-gray-300">+18765798892</a>
                                     </div>
                                 </div>
+                                
                                 <div class="flex items-start">
-                                    <div class="text-[#00f7ff] text-2xl mr-4 mt-1">
+                                    <div class="text-neonBlue text-2xl mr-4 mt-1">
                                         <i class="fas fa-envelope"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#bc13fe] mb-1">EMAIL</h4>
-                                        <p class="text-gray-300">info@yardskatingrink.com</p>
+                                        <h4 class="font-bold text-neonBlue mb-1">EMAIL</h4>
+                                        <a href="mailto:info@yardskating.com" class="text-gray-300">info@yardskating.com</a><br>
+                                        <a href="mailto:events@yardskating.com" class="text-gray-300">events@yardskating.com</a>
                                     </div>
                                 </div>
+                                
                                 <div class="flex items-start">
-                                    <div class="text-[#ff6ec7] text-2xl mr-4 mt-1">
-                                        <i class="fab fa-instagram"></i>
+                                    <div class="text-neonYellow text-2xl mr-4 mt-1">
+                                        <i class="fas fa-clock"></i>
                                     </div>
                                     <div>
-                                        <h4 class="font-bold text-[#00f7ff] mb-1">SOCIAL</h4>
-                                        <p class="text-gray-300">
-                                            <a href="https://instagram.com/yardskatingrink" class="underline hover:text-[#ff6ec7]">Instagram</a>
-                                        </p>
+                                        <h4 class="font-bold text-neonGreen mb-1">HOURS</h4>
+                                        <p class="text-gray-300">Thu-Sun: 5PM-12AM</p>
                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-10">
+                                <h4 class="font-bold text-neonPurple mb-4 text-center">FOLLOW US</h4>
+                                <div class="flex justify-center space-x-6">
+                                    <a href="https://www.instagram.com/yard_skating_rink?igsh=Y2h2M3E0dHI4cDJz" class="text-2xl text-neonPink hover:text-neonBlue transition-colors">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.tiktok.com/@yardskatingrink?lang=en" class="text-2xl text-neonGreen hover:text-neonYellow transition-colors">
+                                        <i class="fab fa-tiktok"></i>
+                                    </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -929,6 +1041,161 @@
                 </div>
             </div>
         </section>
+
+        <section class="py-20 bg-black">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-16 text-neonPink">
+                    FIND US
+                </h2>
+
+                <a href="https://www.google.com/maps/place/Yard+Skating+Rink/@18.5168418,-77.8688827,17z/data=!3m1!4b1!4m6!3m5!1s0x8eda29778f60e87d:0x8e7c96832c72e681!8m2!3d18.5168418!4d-77.8688827!16s%2Fg%2F11sx4_bz9c?entry=ttu&g_ep=EgoyMDI1MDgwNi4wIKXMDSoASAFQAw%3D%3D">
+                <div class="bg-darkBg rounded-xl overflow-hidden border border-neonGreen/30 h-96">
+                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-neonBlue/10 to-neonPurple/10">
+                        <div class="text-center">
+                            <div class="text-5xl text-neonYellow mb-4">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-neonBlue">YARD SKATING RINK</h3>
+                            <p class="text-gray-300 mt-2">1137 Sugar Mill Rd, Montego Bay</p>
+                        </div>
+                    </div>
+                </div></a>
+                
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-darkBg p-6 rounded-xl border border-neonBlue/30 text-center">
+                        <div class="text-4xl text-neonPink mb-4">
+                            <i class="fas fa-cab"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neonGreen mb-2">BY TAXI</h3>
+                        <p class="text-gray-300">
+                            Turn at fisherman beach and drive/walk toward the housing scheme.
+                        </p>
+                    </div>
+                    
+                    <div class="bg=black p-6 rounded-xl border/30 text-center">
+                        
+                    </div>
+                    
+                    <div class="bg-darkBg p-6 rounded-xl border border-neonYellow/30 text-center">
+                        <div class="text-4xl text-neonGreen mb-4">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-neonPurple mb-2">BY CAR</h3>
+                        <p class="text-gray-300">
+                            Free parking available in our lot. Additional street parking nearby.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-</body>
-                            </html>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-neonPurple/30 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold text-neonBlue mb-6">Yard Skating</h3>
+                    <p class="text-gray-300 mb-4">
+                        The premier destination for neon-lit roller skating experiences.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/yard_skating_rink?igsh=Y2h2M3E0dHI4cDJz" class="text-neonPink hover:text-neonBlue transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@yardskatingrink?lang=en" class="text-neonGreen hover:text-neonYellow transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-neonPink mb-6">QUICK LINKS</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('home')" class="text-gray-300 hover:text-neonGreen transition-colors">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="text-gray-300 hover:text-neonGreen transition-colors">About Us</a></li>
+                        <li><a href="#" onclick="showPage('pricing')" class="text-gray-300 hover:text-neonGreen transition-colors">Pricing</a></li>
+                        <li><a href="#" onclick="showPage('events')" class="text-gray-300 hover:text-neonGreen transition-colors">Events</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="text-gray-300 hover:text-neonGreen transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-neonGreen mb-6">HOURS</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex justify-between">
+                            <span>Thu:</span>
+                            <span>5PM-12AM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Fri:</span>
+                            <span>5PM-12AM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sat:</span>
+                            <span>5PM-12AM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sun:</span>
+                            <span>5PM-12AM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold text-neonYellow mb-6">NEWSLETTER</h3>
+                    <p class="text-gray-300 mb-4">
+                        Subscribe for event announcements and special offers.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-black bg-opacity-50 border border-gray-700 rounded-l-lg px-4 py-3 text-white focus:outline-none w-full">
+                        <button class="bg-neonPurple hover:bg-neonPurple/90 text-black font-bold px-4 rounded-r-lg transition-all">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2023 Neon Glide Skating Rink. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-neonPink text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-neonBlue text-sm transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Set home as active page on load
+        window.onload = function() {
+            showPage('home');
+        };
+    </html>
