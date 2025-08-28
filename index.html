@@ -84,39 +84,25 @@
             from { transform: rotate(360deg); }
             to { transform: rotate(0deg); }
         }
-        #soonp{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: space-evenly;
-        }
-        #soon, .dot{
-            font-size: 1.5rem;
-            padding-bottom: 1.875rem;
-        }
-        
-        .dot {
-            animation: jump 1s infinite;
-            display: inline-block;
-        }
-        .dot:nth-child(2) {
-            animation-delay: 0s;
-        }
-        .dot:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-        .dot:nth-child(4) {
-            animation-delay: 0.3s;
-        }
 
-        @keyframes jump {
-          0%, 80%, 100% {
-            transform: translateY(0);
+        @layer utilities {
+          .animate-bounce {
+            animation: bounce 1s infinite;
           }
-          40% {
-            transform: translateY(-10px);
+          .dot:nth-child(1) {
+            animation-delay: 0s;
           }
-        }
+          .dot:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          .dot:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+      @keyframes bounce {
+        0%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-10px); }
+      }
+    }
     </style>
 </head>
 <body class="bg-darkBg">
@@ -536,12 +522,16 @@
                     </div>
                 </div>
                 
-                <div id="soonp" class="bg-gradient-to-r from-neonGreen/10 to-neonBlue/10 p-8 rounded-xl border border-neonGreen/30">
+                <div class="bg-gradient-to-r from-neonGreen/10 to-neonBlue/10 p-8 rounded-xl border border-neonGreen/30">
                     <h3 class="text-2xl font-bold mb-6 text-neonYellow text-center">MEMBERSHIP OPTIONS</h3><br>
-                    <span id="soon">Coming Soon</span>
-                        <span class="dot">.</span>
-                        <span class="dot">.</span>
-                        <span class="dot">.</span>
+                      <div class="flex items-center">
+                    <span class="text-xl font-semibold">Coming Soon</span>
+                    <span class="ml-2 flex">
+                      <span class="dot bg-gray-400 rounded-full w-2 h-2 mx-0.5 animate-bounce" style="animation-delay: 0s;"></span>
+                      <span class="dot bg-gray-400 rounded-full w-2 h-2 mx-0.5 animate-bounce" style="animation-delay: 0.2s;"></span>
+                      <span class="dot bg-gray-400 rounded-full w-2 h-2 mx-0.5 animate-bounce" style="animation-delay: 0.4s;"></span>
+                    </span>
+                  </div>
             </div>
         </section>
 
